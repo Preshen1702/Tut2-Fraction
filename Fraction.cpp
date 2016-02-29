@@ -3,11 +3,12 @@ using namespace std;
 
 class fraction{
 public:
+	fraction(int n1, int n2);
 	fraction();
 	void setFraction(int a, int b);
 	int getNum();
 	int getDen();
-	int add(fraction a);
+	fraction add(fraction a);
 	int sub(fraction a);
 	int multiply(fraction a);
 	int divide(fraction a);
@@ -18,13 +19,27 @@ private:
 };
 int main()
 {
-	fraction obj1,obj2;
+	int n1, n2;
+	cout << "Enter a numerator and denomenator" << endl;
+	cin >> n1 >> n2;
+	fraction obj = fraction(n1,n2);
+	fraction temp;
 
+	int no1, no2;
+	cout << "Enter a numerator and denomenator to add" << endl;
+	cin >> no1 >> no2;
+	fraction obj1 = fraction(no1, no2);
+	temp = obj.add(obj1);
+	cout << "The addition is " << temp.getNum() << "/" << temp.getDen() << endl;
+}
+fraction::fraction(int n1, int n2)
+{
+	num = n1;
+	den = n2;
 }
 fraction::fraction()
 {
-	num = 0;
-	den = 0;
+
 }
 int fraction::getNum()
 {
@@ -39,9 +54,11 @@ void fraction::setFraction(int a, int b)
 	num = a;
 	den = b;
 }
-int fraction::add(fraction a)
+fraction fraction::add(fraction a)
 {
-	return a.getNum()+num;
+	fraction ret;
+	ret.setFraction((a.getNum()+num),(a.getDen()+den));
+	return ret;
 }
 int fraction::sub(fraction a)
 {
